@@ -1,57 +1,112 @@
-# 3D Space Station Pathfinding
+# 3D Pathfinding Space Station
 
-## Overview
-This project implements a **3D pathfinding algorithm** to navigate a complex space station environment. The goal is to efficiently find the shortest or most optimal path between two points while considering obstacles, varying gravity, and potential hazards.
+A fun project to navigate a **3D space station** from a detention cell to a spaceship hangar using **maze-solving algorithms**. The goal is to escape from **start (`S`)** to **hangar (`H`)** in a multi-level station using:
 
-## Features
-- **Pathfinding Algorithms**: Implements A* and Dijkstra’s algorithm for efficient path computation.
-- **3D Navigation**: Handles movement in a three-dimensional space with obstacles and different terrain.
-- **Optimization**: Heuristics to improve performance in large-scale environments.
-- **Visualization**: Renders paths in a 3D grid for better understanding.
-- **Customizable Environment**: Users can define their own space station layouts.
+- **BFS (queue, `--queue`)** for the shortest path  
+- **DFS (stack, `--stack`)** for a valid path  
 
-## Installation
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/YOUR-USERNAME/3d-space-station-pathfinding.git
-   cd 3d-space-station-pathfinding
-   ```
-2. Install dependencies:
-   ```sh
-   pip install -r requirements.txt
-   ```
-   *(if applicable, replace with appropriate dependencies for your project)*
+## 🫠 Build & Run  
 
-## Usage
-Run the main script to start pathfinding:
+### Build the Project  
 ```sh
-python main.py
-```
-Modify `config.json` to set custom environment parameters.
-
-## Project Structure
-```
-📂 3d-space-station-pathfinding
-│── 📂 src        # Source code for pathfinding algorithms
-│── 📂 assets     # 3D models and environment assets
-│── 📂 tests      # Unit tests for validation
-│── config.json   # Configuration file for the environment
-│── main.py       # Main execution script
-│── README.md     # Project documentation
+make
 ```
 
-## Future Improvements
-- Implement real-time path recalculations for dynamic environments.
-- Add machine learning-based heuristics to improve efficiency.
-- Support additional environmental factors like zero gravity.
+### Run the Pathfinder  
+- **DFS (map output)**  
+  ```sh
+  ./pathfinder --stack < input.txt > output.txt
+  ```
+- **BFS (coordinate list output)**  
+  ```sh
+  ./pathfinder --queue --output L < input.txt > output.txt
+  ```
 
-## Contributing
-Feel free to fork this repository and submit pull requests with improvements!
+## ⚙️ Command-Line Options  
+| Option | Description |
+|--------|-------------|
+| `--stack, -s` | Use DFS |
+| `--queue, -q` | Use BFS |
+| `--output M|L, -o M|L` | Output as **map (`M`)** or **list (`L`)** (default: `M`) |
+| `--help, -h` | Show usage information |
+👉 **Must specify either `--stack` or `--queue` (not both).**  
 
-## License
-This project is licensed under the MIT License.
+## 🏢 Space Station Layout  
+The station has up to **10 square levels** with the following elements:  
+- `.` → Floor  
+- `#` → Wall  
+- `S` → Start position  
+- `H` → Hangar (goal)  
+- `E` → Elevator  
+- Moves: `n`, `e`, `s`, `w` (cardinal directions) or `0-9` (elevator exit)  
 
-## Contact
-For any questions or collaboration, reach out via **your.email@example.com** or open an issue in the repository.
+## 📚 Input Formats  
 
+### **1️⃣ Map Format (`M`)**  
+```
+M
+2
+4
+.H..
+....
+E..S
+#..#
+....
+#...
+E#..
+#...
+```
+
+### **2️⃣ Coordinate List Format (`L`)**  
+```
+L
+2
+4
+(0,0,1,H)
+(0,2,0,E)
+(1,2,0,E)
+(0,2,3,S)
+(0,3,0,#)
+```
+
+## 📄 Output Examples  
+
+### **Map Output (BFS Example)**
+```
+Start in level 0, row 2, column 3
+//level 0
+.Hww
+...n
+E..n
+#..#
+//level 1
+....
+#...
+E#..
+#...
+```
+
+### **List Output (BFS Example)**
+```
+//path taken
+(0,2,3,n)
+(0,1,3,n)
+(0,0,3,w)
+(0,0,2,w)
+```
+
+## 🗂 Files  
+- `pathfinder.cpp` → Implementation code  
+- `Makefile` → Compiles the project  
+- `test-*.txt` → Sample test files (e.g., `test-1-qm.txt`)  
+
+## ⚡ Performance  
+- **Built in C++** using `std::deque` for stack/queue  
+- Uses `getopt_long()` for argument parsing  
+- Handles up to **65,535 tiles** in **under 35 seconds**  
+- **BFS is fast**, DFS feels **more exploratory**  
+
+Try it out, escape the station, and share your **maze ideas**! 🚀  
+
+📅 *Last updated: March 16, 2025*
 
