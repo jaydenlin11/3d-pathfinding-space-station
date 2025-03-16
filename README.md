@@ -5,7 +5,7 @@ A pathfinding adventure through a 3D space station maze—escape detention and r
 
 ## Overview
 
-"Back to the Ship" is a personal project where I built a program to navigate a multi-level space station. Starting from a detention cell (marked `S`), the goal is to find the quickest route to the spacecraft hangar (marked `H`) using elevators (`E`) and avoiding walls (`#`). The station’s layout comes from input files, and the program outputs the escape path—either as a map or a coordinate list—using BFS (queue) or DFS (stack) search algorithms.
+"Back to the Ship" is a project where I built a program to navigate a multi-level space station. Starting from a detention cell (marked `S`), the goal is to find the quickest route to the spacecraft hangar (marked `H`) using elevators (`E`) and avoiding walls (`#`). The station’s layout comes from input files, and the program outputs the escape path—either as a map or a coordinate list—using BFS (queue) or DFS (stack) search algorithms.
 
 ## Features
 
@@ -105,4 +105,4 @@ E#..
 
 ## Why This Project? 🤔
 
-I wanted to challenge myself with 3D pathfinding and command-line parsing while imagining a sci-fi escape scenario. It’s a mix of problem-solving and creativity—figuring out how to get back to the ship before the station self-destructs (or something equally dramatic)! 💥
+It's challenging with 3D pathfinding and command-line parsing while imagining a sci-fi escape scenario. It’s a mix of memory, runtime optimizing, time-complexity analyzing, problem-solving, and creativity—figuring out how to get back to the ship before the station self-destructs (or something equally dramatic)! 💥
