@@ -1,8 +1,3 @@
-// Project Identifier: 950181F63D0A883F183EC0A5CC67B19928FE896A
-// EECS 281: Project 1
-// don't use pointers
-// 3d vectors 
-
 #include <getopt.h>
 #include <iostream>
 #include <string>
